@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Boss
   - BossWeakpoint
+  - Wall
   layers:
   - Default
   - TransparentFX
