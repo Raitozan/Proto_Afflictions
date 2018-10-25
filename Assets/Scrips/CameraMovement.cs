@@ -4,49 +4,19 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour {
 
-	public GameObject scene;
+	public float length;
+	public float height;
 
-	bool moving;
-	float startTime;
-	float start;
-	float end;
+	public Transform playerPos;
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		if (!moving)
-		{
-			if (Input.GetAxisRaw("RightStickHorizontal") == -1)
-			{
-				if (scene.transform.eulerAngles.y == -180)
-					start = 180;
-				else
-					start = scene.transform.eulerAngles.y;
+		Vector3 dir = new Vector3(playerPos.position.x, 0.0f, playerPos.position.z);
+		dir = dir.normalized;
+		Vector3 nPos = dir * length;
+		nPos.y = height;
 
-				end = start - 90;
-
-				startTime = Time.time;
-				moving = true;
-			}
-			else if (Input.GetAxisRaw("RightStickHorizontal") == 1)
-			{
-				if (scene.transform.eulerAngles.y == 180)
-					start = -180;
-				else
-					start = scene.transform.eulerAngles.y;
-
-				end = start + 90;
-
-				startTime = Time.time;
-				moving = true;
-			}
-		}
-		else
-		{
-			float step = Time.time - startTime;
-			float y = Mathf.Lerp(start, end, step*2);
-			scene.transform.eulerAngles = new Vector3(0.0f, y, 0.0f);
-			if (y == end)
-				moving = false;
-		}
+		transform.position = nPos;
+		transform.LookAt(0.5f*playerPos.position);
 	}
 }

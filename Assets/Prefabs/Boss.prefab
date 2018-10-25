@@ -2174,6 +2174,8 @@ MonoBehaviour:
   maxHealth: 1000
   health: 1000
   mat: {fileID: 2100000, guid: a8e544cc40db3eb4f84e9a646c6b93ce, type: 2}
+  bulletPrefab: {fileID: 1497748264270116, guid: dba31abf9060d804785fbf1fde8d4444,
+    type: 2}
 --- !u!135 &135457403298019944
 SphereCollider:
   m_ObjectHideFlags: 1

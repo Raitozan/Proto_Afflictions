@@ -51,11 +51,16 @@ public class Player : MonoBehaviour
 		float x = Input.GetAxis("Horizontal");
 		float z = Input.GetAxis("Vertical");
 
-		Vector3 dir = new Vector3(x, 0.0f, z);
+		Vector3 newX = -transform.position.normalized;
+		newX.y = 0.0f;
+		Debug.Log(newX);
+		Vector3 newZ = Quaternion.Euler(0, 90, 0) * newX;
+
+		Vector3 dir = x*newZ + z*newX;
 
 		if (!(x == 0.0f && z == 0.0f))
 		{
-			rb.MoveRotation(Quaternion.LookRotation(new Vector3(x, 0.0f, z)));
+			rb.MoveRotation(Quaternion.LookRotation(dir));
 			if(!Input.GetKey(KeyCode.Joystick1Button4))
 				rb.MovePosition(transform.position + transform.forward * speed * Time.deltaTime);
 		}

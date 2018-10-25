@@ -18,7 +18,7 @@ public class Boss : MonoBehaviour {
 	float maxBulletSpeed = 7.0f;
 
 	float minReloadTime = 2.0f;
-	float maxReloadTime = 0.5f;
+	float maxReloadTime = 1.0f;
 	float reloadTimer;
 
 	public GameObject bulletPrefab;
